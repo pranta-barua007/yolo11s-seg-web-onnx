@@ -1,5 +1,7 @@
 # Object segmentation right on the web with YOLO11
 
+![YOLO11s-seg ONNX](https://github.com/pranta-barua007/yolo11s-seg-web-onnx/blob/main/public/result.png)
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 # YOLOv11s-seg (IN PROGRESS)
@@ -83,11 +85,6 @@ import numpy as np
 import onnxruntime
 import supervision as sv
 
-import cv2
-import numpy as np
-import onnxruntime
-import math
-import time
 
 def sigmoid(x):
     return 1 / (1 + np.exp(-x))
