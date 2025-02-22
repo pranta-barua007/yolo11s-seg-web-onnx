@@ -101,8 +101,13 @@ export async function detectImage(
   // 2) Inference
   const tensor = new ort.Tensor("float32", blob.data32F, inputShape);
   const results = await session.run({ images: tensor });
+  // cleanup tensor
+  tensor.dispose();
   const output0 = results["output0"].data as Float32Array; // [1, 300, 38]
   const output1 = results["output1"].data as Float32Array; // [1, 32, 160, 160]
+  // cleanup results
+  results["output0"].dispose();
+  results["output1"].dispose();
 
   // Prepare the mask prototype
   // Flatten from shape [1,32,160,160] → [32,160,160]

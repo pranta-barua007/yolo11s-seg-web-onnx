@@ -14,14 +14,15 @@ const ULTRAONNX = () => {
   const { session, isLoading } = useONNXModel();
 
   const [image, setImage] = useState<ImageState["url"]>(null);
+  const [scoreThreshold, setScoreThreshold] = useState(SCORE_THRESHOLD);
   const inputImage = useRef<HTMLInputElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
+
   // Configurations
   const modelInputShape: [number, number, number, number] = MODEL_INPUT_SHAPE;
   const topk: number = SELECT_TOP_K;
-  const scoreThreshold: number = SCORE_THRESHOLD;
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -47,7 +48,6 @@ const ULTRAONNX = () => {
       canvasRef.current,
       session,
       topk,
-
       scoreThreshold,
       modelInputShape
     );
@@ -70,6 +70,20 @@ const ULTRAONNX = () => {
     inputImage.current?.click();
   };
 
+  const handleScoreThresholdChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const score = parseFloat(Number(e.target.value).toFixed(1));
+    setScoreThreshold(score);
+    if(!session || !imageRef.current || !canvasRef.current) return;
+    detectImage(
+      imageRef.current,
+      canvasRef.current,
+      session,
+      SELECT_TOP_K,
+      score,
+      MODEL_INPUT_SHAPE
+    );
+  }
+
   return (
     <div className="h-screen px-2.5 flex flex-col justify-center items-center space-y-3">
       {isLoading && <p className="animate-bounce text-slate-300">Downloading model (38MB)...</p>}
@@ -79,6 +93,22 @@ const ULTRAONNX = () => {
           YOLOv11s-seg object detection application live on browser powered by{" "}
           <code className="p-1.5 text-green-400 bg-black rounded">onnxruntime-web</code>
         </p>
+      </div>
+      <div className={!image ? "hidden" : "block"}>
+        <select
+          disabled={isLoading || !image}
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          name="scoreThreshold"
+          defaultValue={SCORE_THRESHOLD}
+          onChange={handleScoreThresholdChange}
+        >
+          <option value={SCORE_THRESHOLD}>Choose Accuracy Threshold</option>
+          <option value="0.5">Above 50%</option>
+          <option value="0.6">Above 60%</option>
+          <option value="0.7">Above 70%</option>
+          <option value="0.8">Above 80%</option>
+          <option value="0.9">Above 90%</option>
+        </select>
       </div>
       <div className="relative">
         <img
