@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import { detectImage } from "./utils/detect";
 import { useONNXModel } from "./hooks/useONNX";
 import { MODEL_INPUT_SHAPE, SELECT_TOP_K, SCORE_THRESHOLD } from "./utils/config"
+import Spinner from "./components/Spinner";
 
 interface ImageState {
   url: string | null;
@@ -71,7 +72,7 @@ const ULTRAONNX = () => {
 
   return (
     <div className="h-screen px-2.5 flex flex-col justify-center items-center space-y-3">
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p className="animate-bounce text-slate-300">Downloading model (38MB)...</p>}
       <div className="text-center">
         <h1>YOLOv11 Object Segmentation App</h1>
         <p className="mt-1.5">
@@ -104,8 +105,9 @@ const ULTRAONNX = () => {
         <button
           disabled={isLoading}
           onClick={handleOpenImage}
-          className="text-black bg-white border-2 border-black px-4 py-2 rounded-full hover:text-slate-800 hover:bg-slate-200 transition-colors"
+          className="flex gap-2 text-black bg-white border-2 border-black px-4 py-2 rounded-full hover:text-slate-800 hover:bg-slate-200 transition-colors"
         >
+          {isLoading && <Spinner />}
           Open local image
         </button>
         {image && (

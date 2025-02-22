@@ -25,8 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <header className="flex items-center justify-center p-4 text-orange-400 hover:text-orange-500 top-0 right-0 absolute">
-        <p>
+      <header className="flex items-center justify-center gap-4 p-4 top-0 right-0 absolute">
+        <p className="text-blue-400 hover:text-blue-500">
+          <a
+            href="https://prantab.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Made with ❤️ by pranta-barua007
+          </a>
+        </p>
+        <p className="text-orange-400 hover:text-orange-500">
           <a
             href="https://github.com/pranta-barua007/yolo11s-seg-web-onnx"
             target="_blank"
@@ -43,17 +52,6 @@ export default function RootLayout({
           {children}
         </ONNXProvider>
       </body>
-      <footer className="flex items-center justify-center p-4 text-blue-400 hover:text-blue-500 bottom-0 right-0 left-0 absolute">
-        <p>
-          <a
-            href="https://prantab.netlify.app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Made with ❤️ by pranta-barua007
-          </a>
-        </p>
-      </footer>
     </html>
   );
 }
