@@ -3,15 +3,11 @@ import * as ort from "onnxruntime-web";
 import { renderBoxes, Colors } from "./renderBox";
 import labels from "./labels.json";
 import { Box } from "./types";
+import { NUM_MASKS, MASK_W, MASK_H } from "./config"
 
 const numClass = labels.length;
 const colors = new Colors();
 const MASK_THRESHOLD = 0.5;
-
-/** Values from ONNX export output */
-const NUM_MASKS = 32;
-const MASK_W = 160;
-const MASK_H = 160;
 
 /** Sigmoid activation */
 function sigmoid(x: number): number {

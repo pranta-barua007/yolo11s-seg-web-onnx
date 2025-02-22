@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import { detectImage } from "./utils/detect";
 import { useONNXModel } from "./hooks/useONNX";
+import { MODEL_INPUT_SHAPE, SELECT_TOP_K, SCORE_THRESHOLD } from "./utils/config"
 
 interface ImageState {
   url: string | null;
@@ -17,9 +18,9 @@ const ULTRAONNX = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Configurations
-  const modelInputShape: [number, number, number, number] = [1, 3, 640, 640];
-  const topk: number = 100;
-  const scoreThreshold: number = 0.75; // 75% accuracy
+  const modelInputShape: [number, number, number, number] = MODEL_INPUT_SHAPE;
+  const topk: number = SELECT_TOP_K;
+  const scoreThreshold: number = SCORE_THRESHOLD;
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -103,7 +104,7 @@ const ULTRAONNX = () => {
         <button
           disabled={isLoading}
           onClick={handleOpenImage}
-          className="text-white bg-black border-2 border-black px-1.5 py-1.5 rounded hover:text-black hover:bg-white transition-colors"
+          className="text-black bg-white border-2 border-black px-4 py-2 rounded-full hover:text-slate-800 hover:bg-slate-200 transition-colors"
         >
           Open local image
         </button>

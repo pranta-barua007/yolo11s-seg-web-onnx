@@ -25,6 +25,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <header className="flex items-center justify-center p-4 text-orange-400 hover:text-orange-500 top-0 right-0 absolute">
+        <p>
+          <a
+            href="https://github.com/pranta-barua007/yolo11s-seg-web-onnx"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Give it a star ⭐
+          </a>
+        </p>
+      </header>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -32,10 +43,10 @@ export default function RootLayout({
           {children}
         </ONNXProvider>
       </body>
-      <footer className="flex items-center justify-center p-4 text-blue-400 hover:text-blue-500 bottom-0 right-0 absolute">
+      <footer className="flex items-center justify-center p-4 text-blue-400 hover:text-blue-500 bottom-0 right-0 left-0 absolute">
         <p>
           <a
-            href="https://github.com/pranta-barua007/yolo11s-seg-web-onnx"
+            href="https://prantab.netlify.app"
             target="_blank"
             rel="noopener noreferrer"
           >
