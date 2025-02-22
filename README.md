@@ -4,14 +4,7 @@
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-# YOLOv11s-seg (IN PROGRESS)
-
-⚠️Current Status
-
-✅class
-✅score
-✅bounding-box
-❌segmentation (working but not correct)
+# YOLOv11<s>-seg 
 
 First, run the development server:
 
