@@ -72,7 +72,7 @@ const ULTRAONNX = () => {
     <div className="h-screen px-2.5 flex flex-col justify-center items-center space-y-3">
       {isLoading && <p>Loading...</p>}
       <div className="text-center">
-        <h1>YOLOv11s-seg Object Segmentation App</h1>
+        <h1>YOLOv11 Object Segmentation App</h1>
         <p className="mt-1.5">
           YOLOv11s-seg object detection application live on browser powered by{" "}
           <code className="p-1.5 text-green-400 bg-black rounded">onnxruntime-web</code>
@@ -101,6 +101,7 @@ const ULTRAONNX = () => {
       />
       <div className="flex space-x-2">
         <button
+          disabled={isLoading}
           onClick={handleOpenImage}
           className="text-white bg-black border-2 border-black px-1.5 py-1.5 rounded hover:text-black hover:bg-white transition-colors"
         >

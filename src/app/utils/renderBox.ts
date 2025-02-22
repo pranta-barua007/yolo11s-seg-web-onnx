@@ -6,7 +6,7 @@ export class Colors {
 
   constructor() {
     this.palette = [
-      "#FF3838", "#FF9D97", "#008000", "#FFB21D", "#CFD231", "#48F90A",
+      "#FF3838", "#FF9D97", "#FF701F", "#FFB21D", "#CFD231", "#48F90A",
       "#92CC17", "#3DDB86", "#1A9334", "#00D4BB", "#2C99A8", "#00C2FF",
       "#344593", "#6473FF", "#0018EC", "#8438FF", "#520085", "#CB38FF"
     ];
@@ -93,8 +93,8 @@ const drawMask = (
   }
   offCtx.putImageData(maskImageData, 0, 0);
 
-  // Use globalAlpha for semi-transparency
-  ctx.globalAlpha = 0.4; // Match Python's semi-transparent mask overlay
+  // Use globalAlpha for semi-transparency, ensuring consistent visibility
+  ctx.globalAlpha = 0.4; // Increased for better mask visibility, matching Python's overlay
   ctx.drawImage(offCanvas, x, y, width, height);
   ctx.globalAlpha = 1; // Reset
 };
