@@ -19,7 +19,7 @@ const ULTRAONNX = () => {
   // Configurations
   const modelInputShape: [number, number, number, number] = [1, 3, 640, 640];
   const topk: number = 100;
-  const scoreThreshold: number = 0.8; // 80% accuracy
+  const scoreThreshold: number = 0.75; // 75% accuracy
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
